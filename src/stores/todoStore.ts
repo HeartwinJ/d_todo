@@ -1,10 +1,14 @@
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 
 import type Todo from "@/models/Todo";
 
 export const useTodoStore = defineStore("todoStore", () => {
   const todos = ref<Todo[]>([]);
+
+  const completedTodos = computed(() =>
+    todos.value.filter((todo) => todo.completed)
+  );
 
   function initTodos() {
     const _todos = JSON.parse(localStorage.getItem("todos") || "[]");
@@ -29,5 +33,5 @@ export const useTodoStore = defineStore("todoStore", () => {
     }
   }
 
-  return { todos, initTodos, addTodo, toggleTodo };
+  return { todos, completedTodos, initTodos, addTodo, toggleTodo };
 });
