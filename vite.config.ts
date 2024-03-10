@@ -13,10 +13,10 @@ export default defineConfig({
       injectRegister: "auto",
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
       manifest: {
-        name: "My Awesome App",
-        short_name: "MyApp",
-        description: "My Awesome App description",
-        theme_color: "#ffffff",
+        name: "D's Todo",
+        short_name: "D's Todo",
+        description: "A simple todo app and planner",
+        theme_color: "#f3e8ff",
         icons: [
           {
             src: "pwa-64x64.png",
