@@ -47,6 +47,7 @@ const showMenu = ref(false);
             :to="link.to"
             class="p-3 flex gap-3 items-center"
             active-class="font-bold rounded-full bg-white text-pink-500"
+            @click="showMenu = false"
           >
             <component :is="link.icon" class="h-6 w-6" />
             <span>{{ link.name }}</span>
