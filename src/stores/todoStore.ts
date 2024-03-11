@@ -1,5 +1,6 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
+import { v4 as uuidv4 } from "uuid";
 
 import type Todo from "@/models/Todo";
 
@@ -33,5 +34,24 @@ export const useTodoStore = defineStore("todoStore", () => {
     }
   }
 
-  return { todos, completedTodos, initTodos, addTodo, toggleTodo };
+  function migrateTodos() {
+    const _todos = JSON.parse(localStorage.getItem("todos") || "[]");
+    todos.value = _todos.map((todo: Todo) => {
+      return {
+        id: todo.id || uuidv4(),
+        title: todo.title || "",
+        completed: todo.completed || false,
+      };
+    });
+    _save();
+  }
+
+  return {
+    todos,
+    completedTodos,
+    initTodos,
+    addTodo,
+    toggleTodo,
+    migrateTodos,
+  };
 });

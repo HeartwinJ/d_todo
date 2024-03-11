@@ -8,6 +8,7 @@ const todoStore = useTodoStore();
 
 onMounted(() => {
   console.info(`D's Todo v${import.meta.env.VITE_APP_VERSION}`);
+  todoStore.migrateTodos();
   todoStore.initTodos();
 });
 </script>
